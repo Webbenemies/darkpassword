@@ -21,7 +21,6 @@ const Pass = () => {
   useEffect(()=>{
     let last = Number(pass[pass.length-1])
     let entrypass = `im${ram*2}`
-    console.log(entrypass);
     entrypass == pass? (setvisible(true)):setvisible(false)
     
   },[pass])

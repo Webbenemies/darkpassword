@@ -27,12 +27,10 @@ import {useSelector} from "react-redux"
 
   const listpdfs = async()=>{
     setload(true)
-    console.log(selet.$id)
     let urls = await Dataserv.allultratags(selet.$id)
     if (urls) {
       setload(false)
       settagarr(urls.documents)
-      console.log("urls",urls);
     }
 
   }

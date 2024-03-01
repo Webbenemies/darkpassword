@@ -25,7 +25,6 @@ const Signupcompo = () => {
                 }
             }
         } catch (error) {
-            console.log("signup errr",error);
             seterro(error)
         }
     }

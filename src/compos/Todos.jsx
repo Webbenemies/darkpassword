@@ -18,14 +18,13 @@ const Todos = () => {
     let quries = selet.userdata.$id
     let todos = await Dataserv.alltodos(quries)
     if (todos) {
-      console.log("todos", todos);
       setarrtodos(todos.documents)
     }
   }
 
 
   let handelsubmit = async () => {
-    if (formtitle == "") return console.log('>>>>>>>>>>>', todoinputref.current.className = "border-2  border-red-400 rounded-sm")
+    if (formtitle == "") return todoinputref.current.className = "border-2  border-red-400 rounded-sm"
     todoinputref.current.className = "border-2  border-white rounded-sm"
     try {
       let data = await Dataserv.createtodo({ 'title': formtitle, 'content': "", "colluserid": selet.userdata.$id })

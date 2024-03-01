@@ -24,7 +24,6 @@ const Logincompo = () => {
         }
       }
     } catch (error) {
-      console.log("logerr", error);
       seterro(error)
     }
   }

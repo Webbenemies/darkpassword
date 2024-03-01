@@ -8,10 +8,8 @@ const Authlayout = ({authencation = true, child}) => {
     const [load, setload] = useState(true)
     useEffect(()=>{
         if (authencation && userstatus !== authencation) {
-            console.log('>>>>>>>>>>>', "first")
             navigate("/signup")
         }else if (!authencation && userstatus !== authencation) {
-            console.log('>>>>>>>>>>>', "second")
             navigate("/")
         }
         setload(false)

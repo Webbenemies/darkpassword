@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Dataserv from '../appwrite/Data'
 import { useState } from 'react'
-import bginde from '../assets/bginde'
 import Loading from './Loading'
 
 
@@ -30,7 +29,6 @@ const Inditodo = () => {
     }
 
     const deletetodo = async ()=>{
-        console.log('>>>>>>>>>>>', "d")
         let delet = await Dataserv.deletetodo(inditododata.$id) 
         if (delet) navea("/") 
     }

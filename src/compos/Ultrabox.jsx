@@ -20,7 +20,6 @@ const Ultrabox = ({classname=""}) => {
     let obj = {"name":name, "url":url}
     storecon.push(obj)
     localStorage.setItem("ultratag",JSON.stringify(storecon))
-    console.log(storecon);
     disp(toggleultra())
   }
 

@@ -7,13 +7,11 @@ const Pdfpriview = () => {
     const navia = useNavigate()
     const { pdfid } = useParams()
     const [url, seturl] = useState(null)
-    console.log('>>>>>>>pdfid>>>>', pdfid)
 
 
     const priview = async () => {
         let pri = await Bucket.FileView(pdfid)
         if (pri) {
-            console.log(pri);
             seturl(pri)
         }
     }
