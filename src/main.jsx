@@ -10,7 +10,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Signupcompo from './compos/Signupcompo.jsx'
 import Authlayout from './compos/Authlayout.jsx'
 import Logincompo from './compos/Logincompo.jsx'
-import Todocon from "./compos/Todocon.jsx"
 import App from './App.jsx'
 import Inditodo from './compos/Inditodo.jsx'
 import Home from './pages/Home.jsx'
@@ -23,7 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Routes>
       <Route  path='/' element={<App/>}>
       <Route index path='/' element={ <Home/>}/>
-      <Route path='/test'element={<Todocon/>} />
       <Route path='/todo/:slug' element={<Authlayout authencation={true} child={<Inditodo/>}/>}/>
       <Route path='/pdf/:pdfid' element={<Authlayout authencation={true} child={<Pdfpriview/>}/>}/>
       <Route path='/signup' element={<Authlayout authencation={false} child={<Signupcompo/>}/>}/>
