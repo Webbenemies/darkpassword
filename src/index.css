@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.no-scrollbar::-webkit-scrollbar{
+    display: none;
+}
+
+.no-scolls{
+    overflow: hidden;
+}
+.scolls{
+    overflow: scroll;
+}
+
+html::-webkit-scrollbar{
+    width: 0.3rem;
+    background-color: black;
+}
+html::-webkit-scrollbar-thumb{
+    background-color: aqua;
+}
+.symbols-defult{
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.9rem;
+}
+
+.blur-background {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the color and opacity as needed */
+  }
