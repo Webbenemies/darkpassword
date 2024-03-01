@@ -56,9 +56,14 @@ const Todos = () => {
   }
 
   const arrangefun = ()=>{
-    setloadlist("sorting...")
-    setarrtodos([])
-    gettodos()
+    if (arrtodos.length !=0) {
+      setloadlist("sorting...")
+      setarrtodos([])
+      gettodos()
+    }else{
+      setloadlist("No todos found")
+    }
+    
   }
 
   useEffect(() => {
