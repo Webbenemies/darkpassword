@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Bucket from '../appwrite/Storage'
 import Loading from './Loading'
 import Dataserv from '../appwrite/Data'
+import { useDispatch } from 'react-redux'
+import { showtost } from '../store/Storeslice'
 const Pdfpriview = () => {
     const navia = useNavigate()
     const { pdfid } = useParams()
     const [url, seturl] = useState(null)
+    const disp = useDispatch()
 
 
     const priview = async () => {
-        let pri = await Bucket.FileView(pdfid)
-        if (pri) {
-            seturl(pri)
+        try {
+            let pri = await Bucket.FileView(pdfid)
+            if (pri) {
+                seturl(pri)
+            }
+        } catch (error) {
+            disp(showtost({"display":true, "mass":"an error occurred", icon:'error', bg:"bg-red-500", time:'900'})) 
         }
     }
 
@@ -22,6 +29,7 @@ const Pdfpriview = () => {
         let ultradelet = await Dataserv.deleteaultra(ultra.$id)
         if (dele && ultra && ultradelet){ 
             navia("/")
+            disp(showtost({"display":true, "mass":"file deleted", icon:'delete', bg:"bg-red-500", time:'900'})) 
         }
     }
 

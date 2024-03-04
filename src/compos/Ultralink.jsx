@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import Bucket from "../appwrite/Storage"
 import {Link} from "react-router-dom"
 import Dataserv  from "../appwrite/Data.js"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import { showtost } from "../store/Storeslice.js"
 
   const Ultralink = () => {
   const [tagarr, settagarr] = useState([])
@@ -10,19 +11,26 @@ import {useSelector} from "react-redux"
   const [load, setload] = useState(false)
   const [masgg, setmasgg] = useState("fetch...")
   const selet = useSelector(state=>state.track.userdata)
+  const disp = useDispatch()
 
 
   const uploadpdf= async(e)=>{
     setload(true)
     setmasgg("uploading...")
     let file = e.target.files[0]
-    let uplo = await Bucket.uploadfile(file)
-   if (uplo) {
-    let baseupload =  await Dataserv.createultratag({'ultraname':uplo.name, 'ulteruserid':selet.$id, "ultratagfileid":uplo.$id})
-     if (baseupload) {
+    try {
+      let uplo = await Bucket.uploadfile(file)
+      if (uplo) {
+        let baseupload =  await Dataserv.createultratag({'ultraname':uplo.name, 'ulteruserid':selet.$id, "ultratagfileid":uplo.$id})
+        if (baseupload) {
+         disp(showtost({"display":true, "mass":"upload done", icon:'download_done', bg:"bg-green-500", time:"2000"}))
+        setrun(!run)
+      }
+    }
+  } catch (error) {
       setrun(!run)
-     }
-   }
+      disp(showtost({"display":true, "mass":"an error occurred", icon:'error', bg:"bg-red-500", time:'900'})) 
+    }
   }
 
   const listpdfs = async()=>{
@@ -48,7 +56,7 @@ import {useSelector} from "react-redux"
 
         <div className="">
           <input type="file" name="" accept=".pdf" onChange={uploadpdf} id="fileupload" className=" hidden" />
-          <label htmlFor="fileupload" className="border-2 rounded-xl border-yellow-400 px-5 py-1 text-[0.7rem] uppercase font-semibold">add+</label>
+          <label htmlFor="fileupload" className=" cursor-pointer border-2 rounded-xl border-yellow-400 px-5 py-1 text-[0.7rem] uppercase font-semibold">add+</label>
         </div>
         <div className="links overflow-x-scroll no-scrollbar whitespace-nowrap flex items-center gap-2 px-8">
           {tagarr?.map((e)=>(

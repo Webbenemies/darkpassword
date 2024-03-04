@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import { storelogin, storelogout } from "./store/Storeslice"
 import { Outlet } from "react-router-dom"
 import Navbar from "./compos/Navbar"
+import Noty from "./compos/Noty"
 function App() {
 
   let disp = useDispatch()
@@ -25,6 +26,7 @@ function App() {
    return loding?(<p>loading</p>):( 
    <>
    <Navbar/>
+   <Noty/>
    <Outlet/>
   </>
     

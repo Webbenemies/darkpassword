@@ -11,7 +11,7 @@ const Time = () => {
   return (
     <>
     <div className=' w-full flex items-center justify-end'>
-    <time className=' text-white uppercase font-[600] text-[2rem] p-2 '
+    <time className=' text-neutral-300 selection:text-neutral-700  uppercase font-[600] text-[2rem] p-2 '
     style={{fontFamily:"cursive"}}
     >{tomeis}</time>
     </div>

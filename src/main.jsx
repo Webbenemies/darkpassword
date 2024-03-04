@@ -14,6 +14,8 @@ import App from './App.jsx'
 import Inditodo from './compos/Inditodo.jsx'
 import Home from './pages/Home.jsx'
 import Pdfpriview from './compos/Pdfpriview.jsx';
+import Trying from './compos/Trying.jsx'
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -25,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path='/todo/:slug' element={<Authlayout authencation={true} child={<Inditodo/>}/>}/>
       <Route path='/pdf/:pdfid' element={<Authlayout authencation={true} child={<Pdfpriview/>}/>}/>
       <Route path='/signup' element={<Authlayout authencation={false} child={<Signupcompo/>}/>}/>
+      <Route path='/test' element={<Authlayout authencation={false} child={<Inditodo/>}/>}/>
       <Route path='/login' element={<Authlayout authencation={false} child={<Logincompo/>}/>}/>
       </Route>
     </Routes>

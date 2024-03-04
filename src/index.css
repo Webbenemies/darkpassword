@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 .no-scrollbar::-webkit-scrollbar{
     display: none;
 }
@@ -30,3 +32,23 @@ html::-webkit-scrollbar-thumb{
     backdrop-filter: blur(10px);
     background-color: rgba(0, 0, 0, 0.5); /* Adjust the color and opacity as needed */
   }
+
+  pre{
+    white-space: pre-wrap;
+  }
+
+  .madimi-one-regular {
+    font-family: "Madimi One", sans-serif;
+    font-style: normal;
+  }
+  
+  .anta-regular {
+    font-family: "Anta", sans-serif;
+    font-style: normal;
+  }
+
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+  }
+  

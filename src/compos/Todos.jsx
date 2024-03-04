@@ -13,7 +13,7 @@ const Todos = () => {
   const navia = useNavigate()
   const refer = useRef(null)
   let todoinputref = useRef(null)
-
+  
   const gettodos = async () => {
     let quries = selet.userdata.$id
     let todos = await Dataserv.alltodos(quries)
@@ -90,7 +90,7 @@ const Todos = () => {
             </div>
 
             <div className=" text-white text-[2rem] flex items-center justify-center ">
-              <button className="flex items-center justify-center" onClick={arrangefun}><span className=" text-[1.1rem] p-2 rounded-full hover:bg-white hover:text-black material-symbols-outlined">auto_transmission</span></button>
+              <button className="flex items-center justify-center" onClick={arrangefun}><span className=" text-[1.1rem] p-2 rounded-full hover:bg-white hover:text-black material-symbols-outlined">grid_view</span></button>
             </div>
 
           </div>
