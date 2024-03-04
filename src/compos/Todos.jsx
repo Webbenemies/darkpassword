@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import Dataserv from "../appwrite/Data"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import Loading from "./Loading"
 import Todocard from "./Todocard"
+import { showtost } from "../store/Storeslice"
 
 const Todos = () => {
   const [formtitle, setformtitle] = useState("")
@@ -12,13 +13,18 @@ const Todos = () => {
   const selet = useSelector(state => state.track)
   const navia = useNavigate()
   const refer = useRef(null)
+  const disp = useDispatch() 
   let todoinputref = useRef(null)
   
   const gettodos = async () => {
     let quries = selet.userdata.$id
-    let todos = await Dataserv.alltodos(quries)
-    if (todos) {
-      setarrtodos(todos.documents)
+    try {
+      let todos = await Dataserv.alltodos(quries)
+      if (todos) {
+        setarrtodos(todos.documents)
+      }  
+    } catch (error) {
+      disp(showtost({"display":true, "mass":"an error occurred, no data found", icon:'error', bg:"bg-red-400", time:'1500'}))
     }
   }
 
@@ -33,12 +39,13 @@ const Todos = () => {
         navia(`/todo/${data.$id}`)
       }
     } catch (error) {
-      console.log('>>>>>>>>>>>', error)
+      disp(showtost({"display":true, "mass":"an error occurred", icon:'error', bg:"bg-red-400", time:'1500'}))
     }
   }
 
   const unauther = () => {
     console.log('>>>>>>>>>>>', "unother")
+    disp(showtost({"display":true, "mass":"login or signup to continue", icon:'error', bg:"bg-white", time:'2500'}))
   }
 
   const managesubmites = (e) => {

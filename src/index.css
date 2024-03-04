@@ -52,3 +52,7 @@ html::-webkit-scrollbar-thumb{
     font-style: normal;
   }
   
+  body{
+    background-color: black;
+    color: whitesmoke;
+  }

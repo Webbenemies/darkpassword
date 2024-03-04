@@ -50,6 +50,7 @@ const Inditodo = () => {
             disp(showtost({"display":true, "mass":"deleted", icon:'delete', bg:"bg-red-400", time:'1500'}))
         } catch (error) {
     console.log('>>>>>>>>>>>', "error for delete")
+    disp(showtost({"display":true, "mass":"an error occurred", icon:'error', bg:"bg-red-400", time:'1500'}))
         }
     }
 

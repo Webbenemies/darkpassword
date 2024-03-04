@@ -44,7 +44,11 @@ const Pdfpriview = () => {
                 <div className='w-full flex items-center justify-end px-3'>
                 <button onClick={deletepdf} className='capitalize text-white font-semibold bg-red-500 rounded-md px-4 py-1 whitespace-nowrap  '>delete <span className="material-symbols-outlined symbols-defult align-middle">delete</span></button>
                 </div>
-                <iframe src={url} frameBorder="0" className=' w-[90%] h-[90vh]'></iframe>
+
+                <div className=' w-[95%] h-dvh'>
+                <iframe src={url} frameBorder="0" className=' w-full h-full'></iframe>
+                </div>
+
             </div>
         </div>
     ) : <Loading />
