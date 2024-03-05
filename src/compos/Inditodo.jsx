@@ -3,9 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Dataserv from '../appwrite/Data'
 import { useState } from 'react'
 import Loading from './Loading'
-import Noty from './Noty'
 import { useDispatch } from 'react-redux'
 import { showtost } from '../store/Storeslice'
+import { motion } from 'framer-motion'
 
 
 
@@ -16,6 +16,8 @@ const Inditodo = () => {
     const [act, setact] = useState(false)
     const [lastact, setlastact] = useState("")
     const [lastarget, setlastarget] = useState("")
+    const [uploading, setuploading] = useState(false)
+    const [editon, setediton] = useState(false)
     const navea = useNavigate()
     const textarref = useRef(null) 
     const disp = useDispatch()
@@ -29,17 +31,19 @@ const Inditodo = () => {
             }
         }
     }
-
+    
     const savetodo = async () => {
         try {
+            setuploading(true)
             let update = await Dataserv.updatetodo(inditododata.$id, { content: textarref.current.innerHTML })
             if (update) {
                 disp(showtost({"display":true, "mass":"saved", icon:'done', bg:"bg-green-500", time:'1000'}))
-                console.log('>>>>>>>>>>>', "save")
+                setuploading(false)
+                setediton(false)
             }
         } catch (error) {
-            console.log('>>>>>>>>>>>', "unsave")
-            disp(showtost({"display":true, "mass":"not saved", icon:'error', bg:"bg-red-400", time:'1500'}))
+            setuploading(false)
+            disp(showtost({"display":true, "mass":"an error accourd", icon:'error', bg:"bg-red-400", time:'1500'}))
         }
     }
     
@@ -133,10 +137,11 @@ const subtool = (e)=>{
     let tag = e.target.dataset.id
     if (tag == "past") {
         navigator.clipboard.readText().then((e)=>{
-            try {
+            console.log("dddcee",e);
+            if(e != "") {
                 setdiscription(discription+` ${e}`)
                 disp(showtost({"display":true, "mass":"paste", icon:'content_paste', bg:"bg-green-500", time:'800'}))       
-            } catch (error) {
+            } else {
                 disp(showtost({"display":true, "mass":"No Clipboards", icon:'priority_high', bg:"bg-red-500", time:'900'}))       
             }
         })
@@ -158,23 +163,39 @@ const subtool = (e)=>{
 
                 <div className="rounded p-4 relative opacity-100 backdrop-blur-sm  text-white   flex items-center justify-center flex-col w-[] border-2 border-purple-500">
             <h1 className=" text-neutral-800 text-[10rem] uppercase absolute font-semibold z-[-1] opacity-60">Target.</h1>
-                    <div className='flex justify-between w-[80%] p-2'>
+                    <div className='flex justify-between w-[85%] p-2'>
                         <h3 className=" capitalize text-[1.4rem] font-semibold w-[60%] overflow-y-scroll" style={{ scrollbarWidth: "none" }}>{inditododata?.title}</h3>
+                        <div className='flex justify-between w-[35%]'>
                         <div className='flex gap-2 select-none'>
-                            <button onClick={savetodo} className=' capitalize text-white font-semibold bg-green-500 rounded-md px-4 py-0 whitespace-nowrap'>save <span className="material-symbols-outlined align-middle symbols-defult ">beenhere</span></button>
+                            <button onClick={savetodo} className=' capitalize text-white font-semibold bg-green-500 rounded-md px-4 py-0 whitespace-nowrap'>save 
+                            { uploading? (<motion.span
+                            animate={{
+                                rotate:[0,180,360]
+                            }}
+                            transition={{
+                                repeat:Infinity,
+                                times:[0,0.5]
+                            }}
+                            className="material-symbols-outlined align-middle symbols-defult rounded-full">progress_activity</motion.span>):(<span className="material-symbols-outlined align-middle symbols-defult ">beenhere</span>)
+                            }
+                            </button>
                             <button onClick={deletetodo} className='capitalize text-white font-semibold bg-red-500 rounded-md px-4 py-0 whitespace-nowrap  '>delete <span className="material-symbols-outlined symbols-defult align-middle">delete</span> </button>
                         </div>
+
+                        <div className="editbtns">
+                        <button  className=" flex items-center justify-center hover:bg-white hover:text-black rounded-full"><span onClick={()=>setediton(!editon)} className={`border-[1px] text-[1.1rem] p-2 rounded-full material-symbols-outlined  `}>edit</span></button>
+                        </div>
+                            </div>
+
                     </div>
 
 <div className="h-[70vh] w-[90%] relative ">
-<div ref={textarref} onKeyDown={handelclicks} style={{scrollbarWidth:'none', caretColor:"transparent"}} spellCheck="false" data-value={discription} contentEditable={true} className='  text-[1rem] z-[2] bg-transparent text-white poppins-regular  border-0 outline-0 overflow-scroll  resize-none absolute w-full h-full top-0 left-0'></div>
+<div ref={textarref} onKeyDown={handelclicks} style={{scrollbarWidth:'none', caretColor:"transparent"}} spellCheck="false" data-value={discription} contentEditable={editon} className='  text-[1rem] z-[2] bg-transparent text-white poppins-regular  border-0 outline-0 overflow-scroll  resize-none absolute w-full h-full top-0 left-0'></div>
 </div>
-
-
                 </div>
             </div>
 
-            <div className='edit w-[10%] '>
+        {editon?(<div className='edit w-[10%]  '>
             <div className=" select-none  text-white text-[2rem] flex flex-col items-center justify-center gap-3 ">
               <button className=" flex items-center justify-center hover:bg-neutral-400 hover:text-white rounded-full"><span  onClick={toolbtns} data-id='b' className={`border-[1px] text-[1.1rem] p-2 rounded-full material-symbols-outlined  `}>format_bold</span></button>
 
@@ -184,10 +205,11 @@ const subtool = (e)=>{
 
               <button  className=" flex items-center justify-center hover:bg-neutral-400 hover:text-white rounded-full"><span onClick={toolbtns} data-id='li' className={` border-[1px] text-[1.1rem] p-2 rounded-full  material-symbols-outlined `}>list</span></button>
 
-              <button  className=" flex items-center justify-center hover:bg-neutral-400 hover:text-white rounded-full"><span onClick={subtool} data-id='past' className={` border-[1px] text-[1.1rem] p-2 rounded-full  material-symbols-outlined `}>content_paste</span></button>
+              <button className="flex items-center justify-center hover:bg-neutral-400 hover:text-white rounded-full"><span onClick={subtool} data-id='past' className={` border-[1px] text-[1.1rem] p-2 rounded-full  material-symbols-outlined `}>content_paste</span></button>
 
             </div>
-            </div>
+            </div>):null} 
+
         </div>
     ) : (<Loading />)
 }
