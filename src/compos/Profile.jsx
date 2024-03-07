@@ -13,7 +13,7 @@ const [newname, setnewname] = useState("")
 const [editname, seteditname] = useState(false)
 const disp = useDispatch()
 const navia  = useNavigate()
-const loca = `${window.location.origin}/varify`
+const loca = String(`${window.location.origin}/varify`)
 console.log('>>>>>>>>>>>localoca', loca)
 
 
@@ -73,7 +73,7 @@ console.log('>>>>>>>>>>>localoca', loca)
     }
   }
 
-  const emailva =async ()=>{
+  const emailva = async ()=>{
     try {
       let work = await Auth.emailvarify(loca)
       if (work) {
