@@ -14,7 +14,7 @@ const [editname, seteditname] = useState(false)
 const disp = useDispatch()
 const navia  = useNavigate()
 const loca = `${window.location.origin}/varify`
-
+console.log('>>>>>>>>>>>localoca', loca)
 
 
   const currentfun = async()=>{
