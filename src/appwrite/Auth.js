@@ -67,8 +67,8 @@ async updatename(name){
     return await this.account.updateName(name)
 }
 
-async emailvarify(){
-    return await this.account.createVerification("/varify")
+async emailvarify(url){
+    return await this.account.createVerification(url)
 }
 
 async emailsecret({id, secret}){

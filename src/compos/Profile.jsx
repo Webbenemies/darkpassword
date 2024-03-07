@@ -13,6 +13,8 @@ const [newname, setnewname] = useState("")
 const [editname, seteditname] = useState(false)
 const disp = useDispatch()
 const navia  = useNavigate()
+const loca = `${window.location.origin}/varify`
+
 
 
   const currentfun = async()=>{
@@ -73,7 +75,7 @@ const navia  = useNavigate()
 
   const emailva =async ()=>{
     try {
-      let work = await Auth.emailvarify()
+      let work = await Auth.emailvarify(loca)
       if (work) {
         console.log(work);
         disp(showtost({"display":true, "mass":"chack your email and varify email", icon:'contact_mail', bg:"bg-green-500", time:'4000'}))
