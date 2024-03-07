@@ -68,6 +68,7 @@ async updatename(name){
 }
 
 async emailvarify(url){
+    console.log('>>>>>>>>>databaseurl>>', url)
     return await this.account.createVerification(url)
 }
 
