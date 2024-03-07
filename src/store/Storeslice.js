@@ -11,6 +11,9 @@ const init = {
     track:{
         status: false,
         userdata: null,
+    },
+    phoneid:{
+        ids:""
     }
 }
 
@@ -26,6 +29,9 @@ export const Ultraslice = createSlice({
         storelogout(state){
             state.track.status = false,
             state.track.userdata = null
+        },
+        setphoneid(state, action){
+            state.phoneid.ids = action.payload
         },
 
         showtost(state, action){
@@ -43,6 +49,6 @@ export const Ultraslice = createSlice({
     }
 })
 
-export const {storelogin, storelogout, showtost, delettost} = Ultraslice.actions
+export const {storelogin, storelogout, showtost, delettost, setphoneid} = Ultraslice.actions
 
 export default Ultraslice.reducer

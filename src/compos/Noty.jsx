@@ -6,7 +6,6 @@ import { delettost } from '../store/Storeslice'
 const Noty = () => {
   const disp = useDispatch()
   const {time, color, mas, display, icon} = useSelector(state=> state.tost)
-  console.log('>>>>>>>>>>>', time, color, mas, display, icon)
 
   if (display) {
     setTimeout(()=>{

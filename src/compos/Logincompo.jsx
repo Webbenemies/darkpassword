@@ -42,6 +42,7 @@ const Logincompo = () => {
         value={password}/>
         <button type='submit' className=' bg-blue-500 text-white px-10 py-1 outline-none rounded'>login</button>
     </form>
+    <p>log in with <Link  className='text-blue-300' to={"/phonelogin"}>phone</Link></p>
     <p>you don't have account <Link  className='text-blue-300' to={"/signup"}>signup now</Link></p>
     </div>
 </>

@@ -46,7 +46,7 @@ const Signupcompo = () => {
         value={name}/>
         <button type='submit' className=' bg-blue-500 text-white px-10 py-1 outline-none rounded'>signup</button>
     </form>
-    <p>you have an account <Link className='text-blue-300' to={"/login"}>login now</Link></p>
+    <p>create account useing <Link className='text-blue-300' to={"/phonelogin"}>phone</Link></p>
     </div>
     </>
   )

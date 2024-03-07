@@ -17,6 +17,7 @@ const Bg = ({hight}) => {
     style={{height:`${hight}`,backgroundImage:`url(${url}) `}}
     >
       <Time/>
+      <h2 className=" text-center capitalize text-[2rem] font-semibold bg-neutral-950  text-slate-300 select-none ">{navigator.onLine?null:"your offline"}</h2>
     </div>
     </>
   )

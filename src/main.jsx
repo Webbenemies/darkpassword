@@ -15,6 +15,9 @@ import Inditodo from './compos/Inditodo.jsx'
 import Home from './pages/Home.jsx'
 import Pdfpriview from './compos/Pdfpriview.jsx';
 import Trying from './compos/Trying.jsx'
+import Profile from './compos/Profile.jsx'
+import Phonelogin from './compos/Phonelogin.jsx'
+import Varify from './compos/Varify.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -26,8 +29,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route index path='/' element={ <Home/>}/>
       <Route path='/todo/:slug' element={<Authlayout authencation={true} child={<Inditodo/>}/>}/>
       <Route path='/pdf/:pdfid' element={<Authlayout authencation={true} child={<Pdfpriview/>}/>}/>
+      <Route path='/account' element={<Authlayout authencation={true} child={<Profile/>}/>}/>
+      <Route path='/varify' element={<Varify/>}/>
       <Route path='/signup' element={<Authlayout authencation={false} child={<Signupcompo/>}/>}/>
-      <Route path='/test' element={<Authlayout authencation={false} child={<Inditodo/>}/>}/>
+      <Route path='/phonelogin' element={<Authlayout authencation={false} child={<Phonelogin/>}/>}/>
+      <Route path='/test' element={<Authlayout authencation={false} child={<Profile/>}/>}/>
       <Route path='/login' element={<Authlayout authencation={false} child={<Logincompo/>}/>}/>
       </Route>
     </Routes>
