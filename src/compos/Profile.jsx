@@ -13,8 +13,8 @@ const [newname, setnewname] = useState("")
 const [editname, seteditname] = useState(false)
 const disp = useDispatch()
 const navia  = useNavigate()
-const loca = String(`${window.location.origin}`)
-console.log('>>>>>>>>>>>localoca', loca)
+const loca = String(`${window.location.origin}/varify`)
+console.log('>>>>>>>>>>localoca', loca)
 
 
   const currentfun = async()=>{
@@ -81,6 +81,7 @@ console.log('>>>>>>>>>>>localoca', loca)
         disp(showtost({"display":true, "mass":"chack your email and varify email", icon:'contact_mail', bg:"bg-green-500", time:'4000'}))
       }
     } catch (error) {
+      console.log('>>>>>>>>>>>', error)
       disp(showtost({"display":true, "mass":"an error occurred try again some time leter", icon:'error', bg:"bg-red-500", time:'4000'}))
     }
   }
