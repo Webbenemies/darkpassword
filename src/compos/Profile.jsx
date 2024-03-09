@@ -137,6 +137,12 @@ console.log('>>>>>>>>>>localoca', loca)
     </div>
     {!datas.emailVerification?(<button onClick={emailva} className='text-[0.7rem] rounded-sm hover:bg-neutral-600 text-neutral-200 px-1.5 '>verifiy email</button>):null}
   </div>
+  <div className=' flex items-center justify-between px-3 py-2 hover:bg-neutral-800 rounded-md'>
+    <div className=' flex gap-20'>
+    <p>Joined:</p>
+    <p className='flex items-center gap-2'>{time( )}</p>
+    </div>
+  </div>
 </div>
 
 </div>

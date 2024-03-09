@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom"
 import Navbar from "./compos/Navbar"
 import Noty from "./compos/Noty"
 import Loading from "./compos/Loading"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 function App() {
 
   let disp = useDispatch()
@@ -28,6 +29,7 @@ function App() {
    <>
    <Navbar/>
    <Noty/>
+   <SpeedInsights/>
    <Analytics />
    <Outlet/>
   </>
