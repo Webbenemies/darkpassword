@@ -18,7 +18,7 @@ const Todocard = ({info, reference}) => {
     <h3 className=" w-[80%] overflow-hidden font-semibold text-neutral-400 whitespace-nowrap capitalize text-[1.1rem]">{info?.title}</h3>
     <span onClick={gotodo}  className="material-symbols-outlined text-[1.1rem] text-neutral-400 hover:text-neutral-200  cursor-pointer">open_jam</span>
       </div>
-    <p className="text-[0.7rem] text-justify">password</p>
+    <p className="text-[0.7rem] text-justify">{info?.content}</p>
     
   </motion.div>
   )

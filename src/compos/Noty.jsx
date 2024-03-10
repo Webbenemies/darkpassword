@@ -23,7 +23,7 @@ const Noty = () => {
     damping: 20
   }}
 
-  className={` z-50 w-[25rem]  h-[4rem] select-none rounded-md bg-black fixed bottom-3 p-2 right-2 text-white`}>
+  className={` z-50 w-[25rem]  h-[4rem] select-none rounded-md bg-black fixed bottom-3 p-2 right-2 text-white max-sm:w-[75%] max-sm:right-0`}>
         <div className='w-full h-full relative '>
             <div className='flex gap-1 items-center'>
             <span className={`material-symbols-outlined rounded-full p-1 text-[1.3rem] ${color}`}>{icon}</span>

@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path='/varify' element={<Varify/>}/>
       <Route path='/signup' element={<Authlayout authencation={false} child={<Signupcompo/>}/>}/>
       <Route path='/phonelogin' element={<Authlayout authencation={false} child={<Phonelogin/>}/>}/>
-      <Route path='/test' element={<Authlayout authencation={false} child={<Profile/>}/>}/>
+      <Route path='/test' element={<Authlayout authencation={true} child={<Trying/>}/>}/>
       <Route path='/login' element={<Authlayout authencation={false} child={<Logincompo/>}/>}/>
       </Route>
     </Routes>

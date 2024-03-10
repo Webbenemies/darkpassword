@@ -7,7 +7,7 @@ const Hearder = () => {
     if (window.outerWidth <= "640") {
       sethightis("40vh")
     }else{
-      sethightis("97vh")
+      sethightis("84vh")
     }
   },[])
   return (

@@ -40,7 +40,13 @@ import { showtost } from "../store/Storeslice.js"
       setload(false)
       settagarr(urls.documents)
     }
+  }
 
+  const removedotpdf = (file)=>{
+    let filename = String(file)
+    let regex = /\.[^.]+$/ 
+    let onlyname = filename.replace(regex,"")
+    return onlyname
   }
 
   useEffect(()=>{
@@ -56,11 +62,11 @@ import { showtost } from "../store/Storeslice.js"
 
         <div className="">
           <input type="file" name="" accept=".pdf" onChange={uploadpdf} id="fileupload" className=" hidden" />
-          <label htmlFor="fileupload" className=" cursor-pointer border-2 rounded-xl border-yellow-400 px-5 py-1 text-[0.7rem] uppercase font-semibold">add+</label>
+          <label htmlFor="fileupload" title="add your books" className=" cursor-pointer border-2 rounded-xl border-yellow-400 px-5 py-1 text-[0.7rem] uppercase font-semibold max-sm:text-[0.6rem] max-sm:px-2 max-sm:border-[1px]">add+</label>
         </div>
         <div className="links overflow-x-scroll no-scrollbar whitespace-nowrap flex items-center gap-2 px-8">
           {tagarr?.map((e)=>(
-            <Link className=" px-1 text-[0.7rem] text-stone-300 hover:text-white " key={e.ultratagfileid} to={`/pdf/${e.ultratagfileid}`}>{e.ultraname}</Link>
+            <Link className=" px-1 text-[0.7rem] text-stone-300 hover:text-white " key={e.ultratagfileid} to={`/pdf/${e.ultratagfileid}`}>{removedotpdf(e.ultraname)}</Link>
           ))}
         </div>
     </div>

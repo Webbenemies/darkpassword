@@ -12,6 +12,9 @@ import bg11 from "./40981.jpg"
 import bg12 from "./99861.jpg"
 import bg13 from "./2151075935.jpg"
 import bg14 from "./2151151063.jpg"
+import bg15 from "./5056.jpg"
+import bg16 from "./2151043271.jpg"
+import bg17 from "./2151043301.jpg"
 
-const objimg = [bg1,bg2,bg3,bg4,bg5,bg6,bg7,bg8,bg9,bg10,bg11,bg12,bg13,bg14]
+const objimg = [bg1,bg2,bg15,bg3,bg4,bg5,bg16,bg6,bg7,bg8,bg9,bg10,bg17,bg11,bg12,bg13,bg14]
 export default objimg

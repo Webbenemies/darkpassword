@@ -35,7 +35,7 @@ const Signupcompo = () => {
     <form onSubmit={handelsub} className='flex flex-col items-center justify-center p-5 gap-8'>
         <p className='text-[0.7rem] text-red-300'>{erro && erro.response.message?erro.response.message:null}</p>
         <p className='text-[0.7rem] text-red-300'>{navigator.onLine?(null):("OFFLINE")}</p>
-        <input className=' text-white bg-transparent border-x-2 border-blue-400 outline-none px-2 py-1 text-[0.9rem] w-[20rem]' type="text" placeholder='email' spellCheck="false" autoFocus
+        <input className=' text-white bg-transparent border-x-2 border-blue-400 outline-none px-2 py-1 text-[0.9rem] w-[20rem]' type="text" placeholder='email' spellCheck="false" 
         onChange={(e)=> setemail(e.target.value)}
         value={email}/>
         <input className='text-white bg-transparent border-x-2 border-blue-400 outline-none px-2 py-1 text-[0.9rem] w-[20rem]' type="text" placeholder='password' spellCheck="false" 
