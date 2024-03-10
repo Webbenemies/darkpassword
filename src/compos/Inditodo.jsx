@@ -157,7 +157,7 @@ const Inditodo = () => {
     return inditododata ? (
         <div className='w-full h-[100vh] bg-neutral-900 relative flex items-center justify-center z-[2] max-sm:flex-col-reverse max-sm:gap-2 '>
             <div className='w-[80%] max-sm:w-full'>
-                <div className="rounded p-4 relative opacity-100 backdrop-blur-sm  text-white   flex items-center justify-center flex-col border-2 border-purple-500 max-sm:p-2">
+                <div className="rounded p-4 relative opacity-100 backdrop-blur-sm  text-white   flex items-center justify-center flex-col border-2 border-purple-500 max-sm:p-2 max-sm:bottom-1">
                     <h1 className=" text-neutral-800 text-[10rem] uppercase absolute font-semibold z-[-1] opacity-60 max-sm:text-[20vw]">Target.</h1>
                     <div className='flex justify-between w-[85%] p-2 max-sm:w-[100%]'>
                         <h3 className=" capitalize text-[1.4rem] font-semibold w-[60%] overflow-y-scroll max-sm:text-[0.9rem]" style={{ scrollbarWidth: "none" }}>{inditododata?.title}</h3>
