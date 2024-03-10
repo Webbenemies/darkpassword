@@ -7,9 +7,9 @@ const Navbar = () => {
 
   return (
     <>
-    <div className={ `bg-black text-white z-10 h-14 flex  items-center  justify-between px-[5%]`}>
+    <div className={ ` w-full bg-black text-white z-10 h-14 flex  items-center  justify-between px-[5%]`}>
       <Link to={"/"}>
-        <h1 className='text-[1.5rem] uppercase font-[600] font-mono tracking-[6px] select-none'>create your world</h1>
+        <h1 className='text-[1.5rem] uppercase font-[600] font-mono tracking-[6px] select-none max-sm:text-[3vw] max-sm:tracking-wide '>create your world</h1>
       </Link>
         {!selet?(
           <div className=' flex gap-6 '>

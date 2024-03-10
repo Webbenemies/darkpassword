@@ -1,8 +1,18 @@
+import { useEffect, useState } from 'react'
 import Bg from './Bg'
 const Hearder = () => {
+  const [hightis, sethightis] = useState("")
+  // 87vh
+  useEffect(()=>{
+    if (window.outerWidth <= "640") {
+      sethightis("40vh")
+    }else{
+      sethightis("97vh")
+    }
+  },[])
   return (
     <>
-    <Bg hight={"87vh"}/>
+    <Bg hight={hightis}/>
       </>
   )
 }
