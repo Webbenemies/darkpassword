@@ -13,7 +13,7 @@ const [newname, setnewname] = useState("")
 const [editname, seteditname] = useState(false)
 const disp = useDispatch()
 const navia  = useNavigate()
-const loca = String(`${window.location.origin}/varify`)
+const loca = String(`${window.location.origin}`)
 console.log('>>>>>>>>>>localoca', loca)
 
 
