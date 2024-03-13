@@ -38,18 +38,15 @@ const Pdfpriview = () => {
     }, [pdfid])
 
     return url != null ? (
-        <div className={`w-[100%] h-[100vh] bg-cover bg-center relative pb-4 bg-black `}
-        style={{ backgroundImage: `url(${url}) ` }}>
-            <div className='w-full h-full flex items-center justify-center  flex-col gap-20'>
+        <div className={`w-[100%] h-[100vh] bg-cover bg-center relative pb-4 bg-black `}>
+            <div className='w-full py-3 flex items-center justify-center  flex-col'>
                 <div className='w-full flex items-center justify-end px-3'>
                 <button onClick={deletepdf} className='capitalize text-white font-semibold bg-red-500 rounded-md px-4 py-1 whitespace-nowrap  '>delete <span className="material-symbols-outlined symbols-defult align-middle">delete</span></button>
                 </div>
-
-                <div className=' w-[95%] h-dvh'>
-                <iframe src={url} frameBorder="0" className=' w-full h-full'></iframe>
-                </div>
-
             </div>
+                <div className=' w-[100%] h-[100vh]'>
+                <embed src={url} frameBorder="0" className=' w-full h-full'></embed>
+                </div>
         </div>
     ) : <Loading />
 

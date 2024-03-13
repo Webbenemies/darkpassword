@@ -1,6 +1,3 @@
-import React from 'react'
-import { useEffect } from 'react'
-
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import Auth from '../appwrite/Auth'
 import { motion } from 'framer-motion'

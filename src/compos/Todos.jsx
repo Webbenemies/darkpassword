@@ -44,7 +44,6 @@ const Todos = () => {
   }
 
   const unauther = () => {
-    console.log('>>>>>>>>>>>', "unother")
     disp(showtost({"display":true, "mass":"login or signup to continue", icon:'no_accounts', bg:"bg-red-500", time:'3000'}))
   }
 

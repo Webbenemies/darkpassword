@@ -13,22 +13,19 @@ const [newname, setnewname] = useState("")
 const [editname, seteditname] = useState(false)
 const disp = useDispatch()
 const navia  = useNavigate()
-const loca = String(`${window.location.origin}`)
-console.log('>>>>>>>>>>localoca', loca)
+const loca = String(`${window.location.origin}/varify`)
 
 
   const currentfun = async()=>{
     let getuser = await Auth.getcurrentacc()
     if (getuser) {
       setdatas(getuser)
-      console.log("getuser",getuser);
     }
   }
 
   const getlogos = async()=>{
     let logo = await Auth.getlogo()
     if (logo) {
-      console.log("logo",logo);
       setlogourl(logo.href)
     }
   }
@@ -37,7 +34,6 @@ console.log('>>>>>>>>>>localoca', loca)
     let logs = await Auth.Listsessions()
     if (logs) {
       setlogdatas(logs.sessions)
-      console.log('>>>>>>>logs>>>>', logs)
     }
   }
 
@@ -66,7 +62,6 @@ console.log('>>>>>>>>>>localoca', loca)
       getlogos()
       seteditname(false)
       }
-      console.log("something");
     }else{
       setnewname(datas.name)
       seteditname(true)
@@ -77,11 +72,9 @@ console.log('>>>>>>>>>>localoca', loca)
     try {
       let work = await Auth.emailvarify(loca)
       if (work) {
-        console.log(work);
         disp(showtost({"display":true, "mass":"chack your email and varify email", icon:'contact_mail', bg:"bg-green-500", time:'4000'}))
       }
     } catch (error) {
-      console.log('>>>>>>>>>>>', error)
       disp(showtost({"display":true, "mass":"an error occurred try again some time leter", icon:'error', bg:"bg-red-500", time:'4000'}))
     }
   }
@@ -119,7 +112,7 @@ console.log('>>>>>>>>>>localoca', loca)
 <button className=' px-2 py-1/2   rounded-sm text-neutral-100 hover:scale-105 text-[0.8rem] bg-red-500' onClick={appwritelogout}>logout</button>
 </div>
 
-  <div className={`w-[80%] p-4 mt-[3rem] ${datas.provider !="email"?"visible":"invisible" } max-[800px]:w-full max-[800px]:p-1`}>
+  <div className={`w-[80%] p-4 mt-[3rem]  max-[800px]:w-full max-[800px]:p-1`}>
   <div className=' flex items-center justify-between px-3 py-2 hover:bg-neutral-800 rounded-md max-[800px]:hover:bg-transparent'>
     <div className=' flex gap-20'>
     <p className=' capitalize max-[800px]:text-[2.5vw]'>Name:</p>
@@ -130,13 +123,16 @@ console.log('>>>>>>>>>>localoca', loca)
     </div>
     <span onClick={editnamefun} className="material-symbols-outlined select-none text-[1.2rem] p-2 rounded-full hover:bg-neutral-700 cursor-pointer max-[800px]:hover:bg-transparent max-[800px]:active:bg-neutral-800 ">{editname?'save':'edit_road'}</span>
   </div>
-  <div className=' flex items-center justify-between px-3 py-2 hover:bg-neutral-800 rounded-md max-[800px]:hover:bg-transparent'>
+{datas.email?
+
+<div className=' flex items-center justify-between px-3 py-2 hover:bg-neutral-800 rounded-md max-[800px]:hover:bg-transparent'>
     <div className=' flex gap-20'>
     <p className=' capitalize max-[800px]:text-[2.5vw]'>Email:</p>
     <p className='flex items-center gap-2 max-[800px]:text-[3vw]'>{datas.email}{datas.emailVerification?<span className="material-symbols-outlined text-[1rem] bg-green-400 rounded-full text-black">check_circle</span>:<span className="material-symbols-outlined text-[1rem] bg-red-500 rounded-full text-black">error</span>}</p>
     </div>
     {!datas.emailVerification?(<button onClick={emailva} className='text-[0.7rem] rounded-sm hover:bg-neutral-600 text-neutral-200 px-1.5 '>verifiy email</button>):null}
-  </div>
+  </div>:null}
+
   <div className=' flex items-center justify-between px-3 py-2 hover:bg-neutral-800 rounded-md max-[800px]:hover:bg-transparent'>
     <div className=' flex gap-20'>
     <p className=' capitalize max-[800px]:text-[2.5vw]'>Joined:</p>

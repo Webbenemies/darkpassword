@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Dataserv from '../appwrite/Data'
 import { useState } from 'react'
@@ -53,7 +53,6 @@ const Inditodo = () => {
             if (delet) navea("/")
             disp(showtost({ "display": true, "mass": "deleted", icon: 'delete', bg: "bg-red-400", time: '1500' }))
         } catch (error) {
-            console.log('>>>>>>>>>>>', "error for delete")
             disp(showtost({ "display": true, "mass": "an error occurred", icon: 'error', bg: "bg-red-400", time: '1500' }))
         }
     }
@@ -80,7 +79,6 @@ const Inditodo = () => {
     }
 
     useEffect(() => {
-        console.log("me")
         if (textarref.current) {
             (textarref.current.innerHTML = discription)
         }
@@ -89,7 +87,6 @@ const Inditodo = () => {
     const toolbtns = (e) => {
         let tag = e.target.dataset.id
         let lastag = e.target
-        console.log('>>>>>>>>>>>', discription)
         let firstag = ""
         if (tag == "h2") {
             firstag = `<${tag} style="font-size: 2rem; color: white; text-transform: capitalize; text-align: center;">`
@@ -137,7 +134,6 @@ const Inditodo = () => {
         let tag = e.target.dataset.id
         if (tag == "past") {
             navigator.clipboard.readText().then((e) => {
-                console.log("dddcee", e);
                 if (e != "") {
                     setdiscription(discription + ` ${e}`)
                     disp(showtost({ "display": true, "mass": "paste", icon: 'content_paste', bg: "bg-green-500", time: '800' }))

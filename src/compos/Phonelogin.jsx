@@ -17,7 +17,6 @@ const Phonelogin = () => {
         try {
             let log = await Auth.createphone(number)
             if (log) {
-                console.log(log);
                 disp(setphoneid(log.userId))
                 setnumber("")
                 setotpstart(true)
@@ -32,17 +31,14 @@ const Phonelogin = () => {
             let id = seletor
             let otp = await Auth.otpphone({'phoneid':id,'code':number})
             if (otp) {
-                console.log('>>>>>>>>>>otp>', otp)
                 let data = await Auth.getcurrentacc()
                 if (data) {
-                    console.log('>>>>>>>>>>data>', data)
                     disp(storelogin(data))
                     navi("/")
                 }
             } 
         } catch (error) {
             seterro(error)
-            console.log(error);
         }
     }
 
