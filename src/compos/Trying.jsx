@@ -1,14 +1,8 @@
+import React from 'react'
 
 const Trying = () => {
-
-  const fun = ()=>{
-    console.log("parced urls");
-  }
-  fun()
   return (
-    <>
-sdcdas
-    </>
+    <div>Trying</div>
   )
 }
 

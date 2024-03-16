@@ -45,7 +45,7 @@ const Pdfpriview = () => {
                 </div>
             </div>
                 <div className=' w-[100%] h-[100vh]'>
-                <embed src={url} frameBorder="0" className=' w-full h-full'></embed>
+                <embed src={url.href} frameBorder="0" className=' w-full h-full'></embed>
                 </div>
         </div>
     ) : <Loading />
