@@ -17,7 +17,7 @@ const Todos = () => {
   let todoinputref = useRef(null)
   
   const gettodos = async () => {
-    let quries = selet.userdata.$id
+    let quries = selet.userdata
     try {
       let todos = await Dataserv.alltodos(quries)
       if (todos) {
@@ -33,7 +33,7 @@ const Todos = () => {
     if (formtitle == "") return todoinputref.current.className = "border-2  border-red-400 rounded-sm"
     todoinputref.current.className = "border-2  border-white rounded-sm"
     try {
-      let data = await Dataserv.createtodo({ 'title': formtitle, 'content': "", "colluserid": selet.userdata.$id })
+      let data = await Dataserv.createtodo({ 'title': formtitle, 'content': "", "colluserid": selet.userdata })
       setformtitle("")
       if (data) {
         navia(`/todo/${data.$id}`)

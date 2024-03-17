@@ -21,7 +21,7 @@ import { showtost } from "../store/Storeslice.js"
     try {
       let uplo = await Bucket.uploadfile(file)
       if (uplo) {
-        let baseupload =  await Dataserv.createultratag({'ultraname':uplo.name, 'ulteruserid':selet.$id, "ultratagfileid":uplo.$id})
+        let baseupload =  await Dataserv.createultratag({'ultraname':uplo.name, 'ulteruserid':selet, "ultratagfileid":uplo.$id})
         if (baseupload) {
          disp(showtost({"display":true, "mass":"upload done", icon:'download_done', bg:"bg-green-500", time:"2000"}))
         setrun(!run)
@@ -35,7 +35,7 @@ import { showtost } from "../store/Storeslice.js"
 
   const listpdfs = async()=>{
     setload(true)
-    let urls = await Dataserv.allultratags(selet.$id)
+    let urls = await Dataserv.allultratags(selet)
     if (urls) {
       setload(false)
       settagarr(urls.documents)
@@ -66,7 +66,7 @@ import { showtost } from "../store/Storeslice.js"
         </div>
         <div className="links overflow-x-scroll no-scrollbar whitespace-nowrap flex items-center gap-2 px-8">
           {tagarr?.map((e)=>(
-            <Link className=" px-1 text-[0.7rem] text-stone-300 hover:text-white " key={e.ultratagfileid} to={`/pdf/${e.ultratagfileid}`}>{removedotpdf(e.ultraname)}</Link>
+            <Link className=" px-1 text-[0.7rem] text-stone-300 hover:text-white max-w-36" key={e.ultratagfileid} to={`/pdf/${e.ultratagfileid}`}>{removedotpdf(e.ultraname)}</Link>
           ))}
         </div>
     </div>

@@ -15,7 +15,6 @@ constructor(){
 
 async createaccount({email, password, name}){
     let useracc = await this.account.create(ID.unique(), email, password, name)
-    console.log(email, password, name, useracc);
     if (useracc) {
        return await this.login({email,password})
     } else {
@@ -29,8 +28,6 @@ async login({email,password}){
 
 async getcurrentacc(){
     let curr = await this.account.get()
-    console.log('>>>>>>>>>>>getcurrentacc', curr )
-    console.log(curr);
     if (curr) {
         return curr
     } else {
@@ -68,7 +65,6 @@ async updatename(name){
 }
 
 async emailvarify(url){
-    console.log('>>>>>>>>>databaseurl>>', url)
     return await this.account.createVerification(url)
 }
 

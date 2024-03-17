@@ -19,7 +19,7 @@ const Logincompo = () => {
       if (log) {
         let data = await Auth.getcurrentacc()
         if (data) {
-          disp(storelogin(data))
+          disp(storelogin(data.$id))
           navia("/")
         }
       }

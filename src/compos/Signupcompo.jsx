@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Auth from '../appwrite/Auth'
 import { useDispatch } from 'react-redux'
 import { storelogin } from '../store/Storeslice'
@@ -20,7 +20,7 @@ const Signupcompo = () => {
             if (up) {
                 let data = await Auth.getcurrentacc()
                 if (data) {
-                disp(storelogin(data))
+                disp(storelogin(data.$id))
                 navig("/")
                 }
             }

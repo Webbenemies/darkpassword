@@ -16,7 +16,7 @@ function App() {
   useEffect(()=>{
     Auth.getcurrentacc().then((e)=>{
       if (e) {
-        disp(storelogin(e))
+        disp(storelogin(e.$id))
       } else {
         disp(storelogout())
       }

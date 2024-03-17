@@ -162,7 +162,7 @@ const Inditodo = () => {
                             <div className='flex gap-2 select-none max-sm:items-center'>
                                 {window.outerWidth <= 640?(
                                     <>
-                                    <button onClick={savetodo} className=" flex items-center justify-center rounded-full max-sm:bg-white max-sm:text-black">                                    {uploading ? (<motion.span
+                                    <button onClick={savetodo} className=" flex items-center justify-center rounded-full max-sm:bg-white max-sm:text-black">{uploading ? (<motion.span
                                         animate={{
                                             rotate: [0, 180, 360]   
                                         }}
