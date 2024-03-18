@@ -90,7 +90,7 @@ const loca = String(`${window.location.origin}/varify`)
 
   return datas?  (
     <>
-<div className=' border-t-[1px] lable w-full bg-transparent text-gray-200 h-[30vh] flex items-start justify-center flex-col px-10 poppins-regular tracking-[1.5px] max-[800px]:h-[20vh]'>
+<div className=' lable w-full bg-transparent text-gray-200 h-[30vh] flex items-start justify-center flex-col px-10 poppins-regular tracking-[1.5px] max-[800px]:h-[20vh]'>
 <h1 className=' capitalize font-semibold text-[2rem] select-none max-[800px]:text-[4vw]'>wellcome {datas.name}</h1>
 <p className=' ml-4 text-[0.6rem] max-[800px]:text-[2vw] max-[800px]:ml-1'>ID: {datas.$id}</p>
 </div>
