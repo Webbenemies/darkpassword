@@ -5,6 +5,7 @@ import Loading from './Loading'
 import Dataserv from '../appwrite/Data'
 import { useDispatch } from 'react-redux'
 import { showtost } from '../store/Storeslice'
+
 const Pdfpriview = () => {
     const navia = useNavigate()
     const { pdfid } = useParams()
@@ -16,6 +17,7 @@ const Pdfpriview = () => {
         try {
             let pri = await Bucket.FileView(pdfid)
             if (pri) {
+                console.log('>>>>>>>>>>>', navigator.pdfViewerEnabled)
                 seturl(pri)
             }
         } catch (error) {
@@ -35,6 +37,7 @@ const Pdfpriview = () => {
 
     useEffect(() => {
         priview()
+        navigator.permissions
     }, [pdfid])
 
     return url != null ? (
@@ -45,7 +48,7 @@ const Pdfpriview = () => {
                 </div>
             </div>
                 <div className=' w-[100%] h-[100vh]'>
-                <embed src={url.href} frameBorder="0" className=' w-full h-full'></embed>
+                <iframe src={url.href} frameBorder="0" className=' w-full h-full'></iframe>
                 </div>
         </div>
     ) : <Loading />

@@ -31,6 +31,7 @@ export class service{
     async FileView(fileid){
         return await this.storage.getFileView(config.bucketid, fileid)
     }
+
 }
 
 

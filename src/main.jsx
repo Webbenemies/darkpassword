@@ -22,7 +22,6 @@ import Inditodo2 from './compos/Inditodo2.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <Provider store={Store}>
     <BrowserRouter>
     <Routes>
@@ -34,11 +33,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path='/varify' element={<Varify/>}/>
       <Route path='/signup' element={<Authlayout authencation={false} child={<Signupcompo/>}/>}/>
       <Route path='/phonelogin' element={<Authlayout authencation={false} child={<Phonelogin/>}/>}/>
-      <Route path='/test' element={<Authlayout authencation={false} child={<Inditodo2/>}/>}/>
+      <Route path='/test' element={<Authlayout authencation={false} child={<Trying/>}/>}/>
       <Route path='/login' element={<Authlayout authencation={false} child={<Logincompo/>}/>}/>
       </Route>
     </Routes>
     </BrowserRouter>
     </Provider>
-  </React.StrictMode>
 )

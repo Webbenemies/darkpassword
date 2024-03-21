@@ -26,8 +26,8 @@ async deletetodo(docid){
  }
 }
 
-async updatetodo(docid, {content}){
-    return await this.database.updateDocument(config.databaseid, config.collectionid, docid,  {content})
+async updatetodo(docid, {content,code}){
+    return await this.database.updateDocument(config.databaseid, config.collectionid, docid,  {content,code})
 }
 
 async alltodos(quries){

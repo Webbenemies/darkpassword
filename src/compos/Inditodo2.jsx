@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Dataserv from '../appwrite/Data'
@@ -10,15 +11,69 @@ const Inditodo2 = () => {
     const disp = useDispatch()
     const nevi = useNavigate()
     const [fetchedata, setfetchedata] = useState(null)
-    const [areavalue, setareavalue] = useState(null)
+    const [areavalue, setareavalue] = useState('')
     const [toggledit, settoggledit] = useState(true)
+
+    let arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9',' ']
+
+    const createciper = async(plaintext)=>{
+        let ciphertext = '';
+        let ramdom = Number(Math.round((Math.random()*15)+5))
+        const setramdom = await Dataserv.updatetodo(fetchedata.$id, { code: ramdom })
+        if (setramdom) {
+            let arrvalue = Array.from(plaintext)
+        arrvalue.map((e)=>{
+          if (arr.includes(e)) {
+              let num = arr.indexOf(e)+ramdom
+              if (num < arr.length) {
+                ciphertext += arr[num];
+
+            }
+            if (num >= arr.length) {
+                num = num % arr.length
+                ciphertext += arr[num];
+                
+            }
+        }else{
+            ciphertext += e;
+        }
+    })
+    console.log('>>>>>>>>>chipertextfun>>', ciphertext)
+    return ciphertext
+}
+    }
+
+
+    const descript = (chipercontent, code)=>{
+        let descriptext = ''
+        let arrvalue = Array.from(chipercontent)
+
+        arrvalue.map((e)=>{
+            let num = arr.indexOf(e)-code
+          if (arr.includes(e)) {
+              if (num < arr.length && num >= 0) {
+                descriptext +=arr[num]
+              }
+             else if (num < 0) {
+                  num = num + arr.length
+                  descriptext+=arr[num]
+              }
+          }else{
+              descriptext+= e
+          }
+        })
+        console.log('>>>>>chipertext>>>>>>', descriptext)
+        return descriptext
+    }
+  
 
     const fetchtodo = async () => {
         try {
             const data = await Dataserv.gettodo(slug)
             if (data) {
                 setfetchedata(data)
-                setareavalue(data.content)
+                let darkcomp = descript(data.content, data.code)
+                setareavalue(darkcomp)
                 console.log('data = ', data);
             }
         } catch (error) {
@@ -29,7 +84,10 @@ const Inditodo2 = () => {
 
     const savetarget = async () => {
         try {
-            const savedata = await Dataserv.updatetodo(fetchedata.$id, { content: areavalue })
+            const ciphertext = await createciper(areavalue);
+            console.log('Ciphertext:', ciphertext);
+            
+            const savedata = await Dataserv.updatetodo(fetchedata.$id, { content: ciphertext })
             if (savedata) {
                 settoggledit(true)
                 disp(showtost({ "display": true, "mass": "saved", icon: 'done', bg: "bg-green-500", time: '1000' }))
