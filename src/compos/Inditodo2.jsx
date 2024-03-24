@@ -5,6 +5,8 @@ import Dataserv from '../appwrite/Data'
 import Loading from './Loading'
 import { useDispatch } from 'react-redux'
 import { showtost } from '../store/Storeslice'
+import { usecretecode } from '../hooks/usedecode'
+import { decodetoplain } from '../hooks/usecodetoplain'
 
 const Inditodo2 = () => {
     const { slug } = useParams()
@@ -13,68 +15,15 @@ const Inditodo2 = () => {
     const [fetchedata, setfetchedata] = useState(null)
     const [areavalue, setareavalue] = useState('')
     const [toggledit, settoggledit] = useState(true)
-
-    let arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9',' ']
-
-    const createciper = async(plaintext)=>{
-        let ciphertext = '';
-        let ramdom = Number(Math.round((Math.random()*15)+5))
-        const setramdom = await Dataserv.updatetodo(fetchedata.$id, { code: ramdom })
-        if (setramdom) {
-            let arrvalue = Array.from(plaintext)
-        arrvalue.map((e)=>{
-          if (arr.includes(e)) {
-              let num = arr.indexOf(e)+ramdom
-              if (num < arr.length) {
-                ciphertext += arr[num];
-
-            }
-            if (num >= arr.length) {
-                num = num % arr.length
-                ciphertext += arr[num];
-                
-            }
-        }else{
-            ciphertext += e;
-        }
-    })
-    console.log('>>>>>>>>>chipertextfun>>', ciphertext)
-    return ciphertext
-}
-    }
-
-
-    const descript = (chipercontent, code)=>{
-        let descriptext = ''
-        let arrvalue = Array.from(chipercontent)
-
-        arrvalue.map((e)=>{
-            let num = arr.indexOf(e)-code
-          if (arr.includes(e)) {
-              if (num < arr.length && num >= 0) {
-                descriptext +=arr[num]
-              }
-             else if (num < 0) {
-                  num = num + arr.length
-                  descriptext+=arr[num]
-              }
-          }else{
-              descriptext+= e
-          }
-        })
-        console.log('>>>>>chipertext>>>>>>', descriptext)
-        return descriptext
-    }
-  
+    const [letters, setletters] = useState()
 
     const fetchtodo = async () => {
         try {
             const data = await Dataserv.gettodo(slug)
             if (data) {
                 setfetchedata(data)
-                let darkcomp = descript(data.content, data.code)
+                let darkcomp = decodetoplain(data.content, data.code)
                 setareavalue(darkcomp)
-                console.log('data = ', data);
             }
         } catch (error) {
             nevi("/")
@@ -84,13 +33,15 @@ const Inditodo2 = () => {
 
     const savetarget = async () => {
         try {
-            const ciphertext = await createciper(areavalue);
-            console.log('Ciphertext:', ciphertext);
-            
-            const savedata = await Dataserv.updatetodo(fetchedata.$id, { content: ciphertext })
-            if (savedata) {
-                settoggledit(true)
-                disp(showtost({ "display": true, "mass": "saved", icon: 'done', bg: "bg-green-500", time: '1000' }))
+            if (letters>50000) {
+                disp(showtost({ "display": true, "mass": "content overloaded", icon: 'full_stacked_bar_chart', bg: "bg-red-500", time: '1000' }))
+            }else{
+                const dd = await usecretecode(areavalue, slug)
+                const savedata = await Dataserv.updatetodo(fetchedata.$id, { content: dd })
+                if (savedata) {
+                    settoggledit(true)
+                    disp(showtost({ "display": true, "mass": "saved", icon: 'done', bg: "bg-green-500", time: '1000' }))
+                }
             }
         } catch (error) {
             disp(showtost({ "display": true, "mass": "an error accourd", icon: 'error', bg: "bg-red-400", time: '1500' }))
@@ -113,6 +64,12 @@ const Inditodo2 = () => {
         fetchtodo()
     }, [slug])
 
+    useEffect(()=>{
+        let len = Array.from(areavalue)
+        let truelen = len.length
+        setletters(truelen)
+    },[areavalue])
+
     return fetchedata ? (
         <>
             <div className=' p-4 w-[95%] mx-auto'>
@@ -123,14 +80,15 @@ const Inditodo2 = () => {
                     <div className=' w-[90%] h-[100%] flex flex-col  max-sm:w-[95%]'>
                         <div className=' h-full overflow-hidden flex items-center justify-center'>
                             <h1 className="absolute  text-neutral-800 text-[10rem] uppercase  font-semibold z-[-1] opacity-60 max-sm:text-[20vw]">Target.</h1>
-                            <textarea value={areavalue} readOnly={toggledit} onChange={(e) => setareavalue(e.target.value)} className=' w-[100%] bg-transparent selection:text-amber-500 resize-none border-2 px-2 py-3 outline-none self-stretch max-sm:border-0' spellCheck="false" name="editor"></textarea>
+                            <textarea style={{scrollbarWidth:"none"}} value={areavalue} readOnly={toggledit} onChange={(e) => setareavalue(e.target.value)} className=' w-[100%] bg-transparent selection:text-amber-500 resize-none border-2 px-2 py-3 outline-none self-stretch max-sm:border-0' spellCheck="false" name="editor"></textarea>
                         </div>
+                            <p className=' self-end text-[0.6rem] p-1 '>{letters} / 50000</p>
                     </div>
 
                     <div className='w-[5%] flex flex-col justify-center items-center gap-4 max-sm:flex-row'>
-                        <button onClick={() => settoggledit(!toggledit)}><span className={`p-1 border-[2px] rounded-full text-[1.2rem] text-neutral-100 material-symbols-outlined hover:text-neutral-800 hover:bg-neutral-100 ${!toggledit ? "bg-neutral-100 text-neutral-800" : null}`}>edit</span></button>
-                        <button onClick={savetarget}><span className='p-1 border-[2px] rounded-full text-[1.2rem] text-neutral-100 material-symbols-outlined hover:text-neutral-800 hover:bg-neutral-100'>save</span></button>
-                        <button onClick={deletetodo}><span className='p-1 border-[2px] rounded-full text-[1.2rem] text-neutral-100 material-symbols-outlined hover:text-neutral-800 hover:bg-neutral-100'>delete</span></button>
+                        <button onClick={() => settoggledit(!toggledit)}><span className={`p-1 border-[2px] rounded-full text-[1.2rem] text-neutral-100 material-symbols-outlined hover:text-neutral-800 hover:bg-neutral-100 ${!toggledit ? "bg-neutral-100 text-neutral-800" : null} max-sm:hover:bg-transparent max-sm:hover:text-white`}>edit</span></button>
+                        <button onClick={savetarget}><span className='p-1 border-[2px] rounded-full text-[1.2rem] text-neutral-100 material-symbols-outlined hover:text-neutral-800 hover:bg-neutral-100 max-sm:hover:bg-transparent max-sm:hover:text-white max-sm:active:bg-neutral-100 max-sm:active:text-neutral-900'>save</span></button>
+                        <button onClick={deletetodo}><span className='p-1 border-[2px] rounded-full text-[1.2rem] text-neutral-100 material-symbols-outlined hover:text-neutral-800 hover:bg-neutral-100 max-sm:hover:bg-transparent max-sm:hover:text-white max-sm:active:bg-neutral-100 max-sm:active:text-neutral-900'>delete</span></button>
                     </div>
                 </div>
             </div>

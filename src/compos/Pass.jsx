@@ -24,7 +24,6 @@ const Pass = () => {
   useEffect(()=>{
     let last = Number(pass[pass.length-1])
     let entrypass = `im${ram*last}${last}`
-    console.log('>>>>>>>>>>>', entrypass)
     entrypass == pass? disp(setvisualtartus(true)):null
   },[pass])
   
