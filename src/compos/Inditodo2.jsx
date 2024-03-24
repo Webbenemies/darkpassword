@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { showtost } from '../store/Storeslice'
 import { usecretecode } from '../hooks/usedecode'
 import { decodetoplain } from '../hooks/usecodetoplain'
+import { textformater } from '../hooks/usetexteff'
 
 const Inditodo2 = () => {
     const { slug } = useParams()
@@ -23,9 +24,15 @@ const Inditodo2 = () => {
             if (data) {
                 setfetchedata(data)
                 let darkcomp = decodetoplain(data.content, data.code)
-                setareavalue(darkcomp)
+                let formatedtext = textformater(data.content)
+                setareavalue(formatedtext)
+
+                setTimeout(()=>{
+                    setareavalue(darkcomp)
+                },2000)
             }
         } catch (error) {
+            console.log(error);
             nevi("/")
             disp(showtost({ "display": true, "mass": "page not found", icon: 'error', bg: "bg-red-400", time: '1500' }))
         }
