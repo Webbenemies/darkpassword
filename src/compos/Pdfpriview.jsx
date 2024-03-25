@@ -19,6 +19,7 @@ const Pdfpriview = () => {
             if (pri) {
                 console.log('>>>>>>>>>>>', navigator.pdfViewerEnabled)
                 seturl(pri)
+                console.log('>>>>>>>>>>>', pri)
             }
         } catch (error) {
             disp(showtost({"display":true, "mass":"an error occurred", icon:'error', bg:"bg-red-500", time:'900'})) 

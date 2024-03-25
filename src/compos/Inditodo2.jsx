@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Dataserv from '../appwrite/Data'
 import Loading from './Loading'
@@ -17,6 +17,7 @@ const Inditodo2 = () => {
     const [areavalue, setareavalue] = useState('')
     const [toggledit, settoggledit] = useState(true)
     const [letters, setletters] = useState()
+    const arearef = useRef(null)
 
     const fetchtodo = async () => {
         try {
@@ -25,11 +26,7 @@ const Inditodo2 = () => {
                 setfetchedata(data)
                 let darkcomp = decodetoplain(data.content, data.code)
                 let formatedtext = textformater(data.content)
-                setareavalue(formatedtext)
-
-                setTimeout(()=>{
-                    setareavalue(darkcomp)
-                },2000)
+                setareavalue(darkcomp)
             }
         } catch (error) {
             console.log(error);
@@ -77,6 +74,8 @@ const Inditodo2 = () => {
         setletters(truelen)
     },[areavalue])
 
+
+
     return fetchedata ? (
         <>
             <div className=' p-4 w-[95%] mx-auto'>
@@ -88,7 +87,7 @@ const Inditodo2 = () => {
                             <p className=' self-end text-[0.6rem] p-1'>{letters} / 50000</p>
                         <div className=' h-full overflow-hidden flex items-center justify-center'>
                             <h1 className="absolute  text-neutral-800 text-[10rem] uppercase  font-semibold z-[-1] opacity-60 max-sm:text-[20vw]">Target.</h1>
-                            <textarea style={{scrollbarWidth:"none"}} value={areavalue} readOnly={toggledit} onChange={(e) => setareavalue(e.target.value)} className=' w-[100%] bg-transparent selection:text-amber-500 resize-none border-2 px-2 py-3 outline-none self-stretch max-sm:border-0' spellCheck="false" name="editor"></textarea>
+                            <textarea style={{scrollbarWidth:"none"}} ref={arearef} value={areavalue} readOnly={toggledit} onChange={(e) => setareavalue(e.target.value)} className=' w-[100%] bg-transparent selection:text-amber-500 resize-none border-2 px-2 py-3 outline-none self-stretch max-sm:border-0' spellCheck="false" name="editor"></textarea>
                         </div>
                     </div>
 
