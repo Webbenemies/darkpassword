@@ -105,7 +105,7 @@ const Todos = () => {
 
         <div className=" h-[80vh] w-full" ref={refer}>
           {arrtodos.length != 0 ? (
-            <div style={{ scrollbarWidth: "none" }} className={`flex items-start flex-wrap justify-start gap-4 relative  px-10 py-6  w-full h-full  overflow-y-scroll max-sm:px-0 max-sm:justify-around max-sm:gap-1`} >
+            <div style={{ scrollbarWidth: "none" }} className={`flex items-start flex-wrap justify-start gap-4 relative  px-10 py-6  w-full h-full  overflow-y-scroll max-sm:px-0 max-sm:justify-around max-sm:gap-9`} >
               {arrtodos?.map((e) => (
                 <Todocard key={e.$id} info={e} reference={refer} />
               ))}

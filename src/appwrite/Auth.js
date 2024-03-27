@@ -74,7 +74,13 @@ async emailsecret({id, secret}){
     return await this.account.updateVerification(id, secret)
 }
 
+async createRepassword (email, url){
+    return await this.account.createRecovery(email, url)
+}
 
+async confumcreateRepassword(userid, secret, newpass, conpass){
+    return await this.account.updateRecovery(userid, secret, newpass, conpass)
+}
 
 }
 

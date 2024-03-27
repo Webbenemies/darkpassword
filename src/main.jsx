@@ -17,6 +17,8 @@ import Profile from './compos/Profile.jsx'
 import Phonelogin from './compos/Phonelogin.jsx'
 import Varify from './compos/Varify.jsx'
 import Inditodo2 from './compos/Inditodo2.jsx'
+import Profilepage from './pages/Profilepage.jsx'
+import Profpassword from './compos/Profpassword.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -27,11 +29,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route index path='/' element={ <Home/>}/>
       <Route path='/todo/:slug' element={<Authlayout authencation={true} child={<Inditodo2/>}/>}/>
       <Route path='/pdf/:pdfid' element={<Authlayout authencation={true} child={<Pdfpriview/>}/>}/>
-      <Route path='/account' element={<Authlayout authencation={true} child={<Profile/>}/>}/>
+
+      <Route path='/account' element={<Authlayout authencation={true} child={<Profilepage/>}/>} >
+        <Route path='/account' index element={<Authlayout authencation={true} child={<Profile/>}/>}/>
+        <Route path='/account/password' element={<Authlayout authencation={true} child={<Profpassword/>}/>}/>
+      </Route>
+
       <Route path='/varify' element={<Varify/>}/>
       <Route path='/signup' element={<Authlayout authencation={false} child={<Signupcompo/>}/>}/>
       <Route path='/phonelogin' element={<Authlayout authencation={false} child={<Phonelogin/>}/>}/>
-      <Route path='/test' element={<Authlayout authencation={true} child={<Trying/>}/>}/>
+      <Route path='/test' element={<Authlayout authencation={false} child={<Trying/>}/>}/>
       <Route path='/login' element={<Authlayout authencation={false} child={<Logincompo/>}/>}/>
       </Route>
     </Routes>

@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { showtost, storelogout } from '../store/Storeslice'
 import { useNavigate } from 'react-router-dom'
 import Loading from './Loading'
+import Profhead from './Profhead'
+import Profnavbar from './Profnavbar'
 
 const Profile = () => {
 const [datas, setdatas] = useState(null)
@@ -90,10 +92,6 @@ const loca = String(`${window.location.origin}/varify`)
 
   return datas?  (
     <>
-<div className=' lable w-full bg-transparent text-gray-200 h-[30vh] flex items-start justify-center flex-col px-10 poppins-regular tracking-[1.5px] max-[800px]:h-[20vh]'>
-<h1 className=' capitalize font-semibold text-[2rem] select-none max-[800px]:text-[4vw]'>wellcome {datas.name}</h1>
-<p className=' ml-4 text-[0.6rem] max-[800px]:text-[2vw] max-[800px]:ml-1'>ID: {datas.$id}</p>
-</div>
 <div className=' w-[90%] mx-auto p-7 rounded-md h-[100%] bg-neutral-900 flex justify-between items-start mb-4 max-[800px]:flex-col max-[800px]:w-[95%] max-[800px]:px-1 max-[800px]:py-7'>
 
 <div className='w-[70%] h-full rounded-md p-2 max-[800px]:w-full'>
@@ -106,7 +104,7 @@ const loca = String(`${window.location.origin}/varify`)
   <p className='capitalize font-semibold text-[2rem] select-none max-[800px]:text-[3vw]'>{datas.name}</p>
   <p className='text-[0.8rem] flex items-center gap-2 max-[800px]:text-[2vw]'>{datas.email?`Signed in as ${datas.email}`:null}</p>
 
-  <p className='text-[0.8rem] flex items-center gap-2'>{datas.phone?`Signed in as ${datas.phone}`:null} {datas.phoneVerification?<span className="material-symbols-outlined text-[1rem] bg-green-400 rounded-full text-black">check_circle</span>:null}</p>
+  <p className='text-[0.8rem] flex items-center gap-2'>{datas.phone?`Signed in as ${datas.phone}`:null}</p>
   </div>
   </div>
 <button className=' px-2 py-1/2   rounded-sm text-neutral-100 hover:scale-105 text-[0.8rem] bg-red-500' onClick={appwritelogout}>logout</button>
@@ -124,13 +122,21 @@ const loca = String(`${window.location.origin}/varify`)
     <span onClick={editnamefun} className="material-symbols-outlined select-none text-[1.2rem] p-2 rounded-full hover:bg-neutral-700 cursor-pointer max-[800px]:hover:bg-transparent max-[800px]:active:bg-neutral-800 ">{editname?'save':'edit_road'}</span>
   </div>
 {datas.email?
-
 <div className=' flex items-center justify-between px-3 py-2 hover:bg-neutral-800 rounded-md max-[800px]:hover:bg-transparent'>
     <div className=' flex gap-20'>
     <p className=' capitalize max-[800px]:text-[2.5vw]'>Email:</p>
     <p className='flex items-center gap-2 max-[800px]:text-[3vw]'>{datas.email}{datas.emailVerification?<span className="material-symbols-outlined text-[1rem] bg-green-400 rounded-full text-black">check_circle</span>:<span className="material-symbols-outlined text-[1rem] bg-red-500 rounded-full text-black">error</span>}</p>
     </div>
     {!datas.emailVerification?(<button onClick={emailva} className='text-[0.7rem] rounded-sm hover:bg-neutral-600 text-neutral-200 px-1.5 '>verifiy email</button>):null}
+  </div>:null}
+
+{datas.phone?
+<div className=' flex items-center justify-between px-3 py-2 hover:bg-neutral-800 rounded-md max-[800px]:hover:bg-transparent'>
+    <div className=' flex gap-20'>
+    <p className=' capitalize max-[800px]:text-[2.5vw]'>phone:</p>
+    <p className='flex items-center gap-2 max-[800px]:text-[3vw]'>{datas.phone}{datas.phoneVerification?<span className="material-symbols-outlined text-[1rem] bg-green-400 rounded-full text-black">check_circle</span>:<span className="material-symbols-outlined text-[1rem] bg-red-500 rounded-full text-black">error</span>}</p>
+    </div>
+
   </div>:null}
 
   <div className=' flex items-center justify-between px-3 py-2 hover:bg-neutral-800 rounded-md max-[800px]:hover:bg-transparent'>
@@ -164,6 +170,7 @@ const loca = String(`${window.location.origin}/varify`)
 </div>
 
 </div>
+
     </>
   ):(<Loading/>)
 }

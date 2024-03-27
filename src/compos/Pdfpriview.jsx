@@ -46,6 +46,7 @@ const Pdfpriview = () => {
             <div className='w-full py-3 flex items-center justify-center  flex-col'>
                 <div className='w-full flex items-center justify-end px-3'>
                 <button onClick={deletepdf} className='capitalize text-white font-semibold bg-red-500 rounded-md px-4 py-1 whitespace-nowrap  '>delete <span className="material-symbols-outlined symbols-defult align-middle">delete</span></button>
+                <a target='_blank' href={url.href}>open</a>
                 </div>
             </div>
                 <div className=' w-[100%] h-[100vh]'>
